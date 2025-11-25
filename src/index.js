@@ -1,12 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import { createRoot } from 'react-dom/client';
+import ChatWidget from './components/ChatWidget';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
+window.BurkanChatWidget = {
+  mountChatWidget: (elementId, options = {}) => {
+    const apiUrl = options.apiUrl || "https://backend-0ftm.onrender.com";
+    const container = document.getElementById(elementId);
+    if (container) {
+      createRoot(container).render(
+        <ChatWidget apiUrl={apiUrl} />
+      );
+    }
+  }
+};
